@@ -90,12 +90,13 @@ public class Product  implements Serializable {
         return date;
     }
 
-    public void setDate(Instant date) {
-        this.date = date;
-    }
-
     public Set<Category> getCategories() {
         return categories;
+    }
+
+    @PrePersist
+    public void prePersist(){
+    date = Instant.now();
     }
 
     @Override
@@ -109,5 +110,8 @@ public class Product  implements Serializable {
     @Override
     public int hashCode() {
         return id.hashCode();
+    }
+
+    public void setDate(Instant date) {
     }
 }
